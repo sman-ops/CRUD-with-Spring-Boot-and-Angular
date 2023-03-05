@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
 
   createEmp() {
     this.empDetail = this.fb.group({
+      id: [''],
       email: [''],
       name: [''],
       jobTitle: [],
@@ -49,6 +50,38 @@ export class AppComponent implements OnInit {
       alert('employee added with success');
       this.getEmployees();
     });
+  }
+
+  editEmployee(emp: Employee) {
+    this.empDetail.controls['id'].setValue(emp.id);
+    this.empDetail.controls['email'].setValue(emp.email);
+    this.empDetail.controls['imageUrl'].setValue(emp.imageUrl);
+    this.empDetail.controls['jobTitle'].setValue(emp.jobTitle);
+    this.empDetail.controls['name'].setValue(emp.name);
+    this.empDetail.controls['phone'].setValue(emp.phone);
+  }
+
+  updateEmployee() {
+    let formData = this.empDetail.value;
+    let data = {
+      id: formData.id,
+      email: formData.email,
+      imageUrl: formData.imageUrl,
+      jobTitle: formData.jobTitle,
+      name: formData.name,
+      phone: formData.phone,
+    };
+
+    this.employeeService.updateEmployee(data).subscribe(
+      (response: Employee) => {
+        console.log(response);
+        alert('Employee updated with successfully');
+        this.getEmployees();
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
   // we need to subscribe to this observable we notify whanever some data comes from the server
