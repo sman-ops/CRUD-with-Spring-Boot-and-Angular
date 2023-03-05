@@ -44,7 +44,7 @@
         <td>{{ employee.name }}</td>
         <td>{{ employee.email }}</td>
         <td>{{ employee.jobTitle }}</td>
-        <td>{{ employee.imgUrl }}</td>
+        <td>{{ employee.imageUrl }}</td>
         <td>{{ employee.phone }}</td>
         <td>
           <button
@@ -81,7 +81,7 @@
           ></button>
         </div>
         <div class="modal-body">
-          <form>
+          <form [formGroup]="empDetail" (ngSubmit)="addEmployee()">
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">email </label>
               <input
@@ -143,7 +143,7 @@
                 Close
               </button>
               <button
-                type="button"
+                type="submit"
                 class="btn btn-primary"
                 data-bs-dismiss="modal"
               >
