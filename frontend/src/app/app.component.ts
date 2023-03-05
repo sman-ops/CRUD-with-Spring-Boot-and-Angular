@@ -84,6 +84,19 @@ export class AppComponent implements OnInit {
     );
   }
 
+  deleteEmployee(emp: Employee) {
+    this.employeeService.deleteEmployee(emp).subscribe(
+      (res) => {
+        alert('An employee deleted with success');
+
+        this.getEmployees();
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
   // we need to subscribe to this observable we notify whanever some data comes from the server
   public getEmployees(): void {
     this.employeeService.getEmployees().subscribe(

@@ -11,7 +11,7 @@ import com.example.crud.entities.Employee;
 @Repository
 public interface EmployeeRepo extends JpaRepository<Employee,Long> {
 	
-	void deleteEmployeeById(Long id);
+	
 	
 	Optional<Employee> findEmployeeById(Long id);
 	
